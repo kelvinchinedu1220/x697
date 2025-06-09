@@ -16,7 +16,7 @@
 #
 
 # Device path
-DEVICE_PATH := device/infinix/x697
+DEVICE_PATH := device/infinix/X697
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -48,7 +48,7 @@ TARGET_BOARD_PLATFORM := mt6781
 PRODUCT_PLATFORM := mt6781
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := x697
+TARGET_OTA_ASSERT_DEVICE := X697
 
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
@@ -133,7 +133,8 @@ PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
-## TWRP-Specific configuration
+# System prop
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 
 # Hardware
 BOARD_USES_MTK_HARDWARE := true
