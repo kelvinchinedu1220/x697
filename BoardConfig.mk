@@ -97,8 +97,7 @@ TARGET_NO_RECOVERY := true
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions size
-#BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x2000000
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
 
 # Dynamic Partitions
 BOARD_SUPER_PARTITION_SIZE := 6873469036
@@ -128,11 +127,6 @@ TARGET_COPY_OUT_SYSTEM_EXT = system_ext
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster4 \
-    libpuresoftkeymasterdevice
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -177,11 +171,6 @@ TW_HAS_NO_RECOVERY_PARTITION := true
 
 BOARD_USES_MTK_HARDWARE := true
 
-# Fix stock .ozip installation
-TW_SKIP_COMPATIBILITY_CHECK := true
-#TW_OZIP_DECRYPT_KEY := 1c4c1ea3a12531ae491b21bb31613c11
-TW_OZIP_DECRYPT_KEY := 0000
-
 # Hide notch
 #    TW_Y_OFFSET  := 100 
 #    TW_H_OFFSET  := -100
@@ -195,16 +184,24 @@ TW_CUSTOM_CPU_POS := 50
 TW_CUSTOM_CLOCK_POS := 300
 TW_CUSTOM_BATTERY_POS := 800
 
-# Decryption
-TW_INCLUDE_CRYPTO := true
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-
 # Test change time in statusbar
 #TW_CUSTOM_CPU_POS := 50
 #TW_CUSTOM_CLOCK_POS := 370
 #TW_CUSTOM_BATTERY_POS := 1040
 #TW_STATUS_ICONS_ALIGN := center
+
+# Decryption
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_PREPARE_DATA_MEDIA_EARLY := true
+
+# Additional binaries & libraries needed for recovery
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libkeymaster4 \
+    libpuresoftkeymasterdevice
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 
