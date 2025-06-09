@@ -22,15 +22,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Inherit from x697 device
-$(call inherit-product, device/infinix/x697/device.mk)
+# Inherit from X697 device
+$(call inherit-product, device/infinix/X697/device.mk)
 
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := x697
-PRODUCT_NAME := twrp_x697
+PRODUCT_DEVICE := X697
+PRODUCT_NAME := twrp_X697
 PRODUCT_BRAND := Infinix
 PRODUCT_MODEL := Note 11 Pro
 PRODUCT_MANUFACTURER := Infinix
